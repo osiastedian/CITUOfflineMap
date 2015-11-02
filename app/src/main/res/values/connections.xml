@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="connections" id="connections">
+        <item>College_Of_Computer_Studies Test_1</item>
+        <item>Main_Building Test_1</item>
+        <item>Main_Building Test_2</item>
+        <item>College_Canteen Test_2</item>
+        <item>College_Canteen College_Of_Computer_Studies</item>
+    </array>
+</resources>

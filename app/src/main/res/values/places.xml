@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="places" id="placePoints">
+        <item>College_Of_Computer_Studies
+            <attr name="X">100</attr>
+            <attr name="Y">100</attr>
+            <attr name="picutre">FileName1</attr>
+            <attr name="color">red</attr>
+            <attr name="size">MEDIUM</attr>
+        </item>
+        <item>Main_Building
+            <attr name="X">400</attr>
+            <attr name="Y">400</attr>
+            <attr name="picutre">FileName3</attr>
+            <attr name="color">"red"</attr>
+            <attr name="size">BIG</attr>
+        </item>
+        <item>College_Canteen
+            <attr name="X">600</attr>
+            <attr name="Y">600</attr>
+            <attr name="picutre">"FileName2"</attr>
+            <attr name="color">blue</attr>
+            <attr name="size">MEDIUM</attr>
+        </item>
+    </array>
+
+</resources>
