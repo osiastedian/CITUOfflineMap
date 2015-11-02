@@ -17,6 +17,7 @@ import com.ecrc.cituofflinemap.models.IntersectionPoint;
 import com.ecrc.cituofflinemap.models.PlacePoint;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -74,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
         if(spinnerFrom.getSelectedItem()!=null & spinnerTo.getSelectedItem()!=null ) {
             PlacePoint selectedFrom = (PlacePoint) spinnerFrom.getSelectedItem();
             PlacePoint selectedTo = (PlacePoint) spinnerTo.getSelectedItem();
-            map.getShortestPath(selectedFrom,selectedTo);
+            LinkedList<PlacePoint> shortestPath = map.getShortestPath(selectedFrom, selectedTo);
+            // Draw edges from placepoint to placepoint based on shortestPath
         }
     }
     private void drawLine(Point p1,Point p2){

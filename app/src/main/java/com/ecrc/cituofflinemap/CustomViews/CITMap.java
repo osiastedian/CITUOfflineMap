@@ -2,27 +2,22 @@ package com.ecrc.cituofflinemap.CustomViews;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.drawable.shapes.OvalShape;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
 
-import com.ecrc.cituofflinemap.R;
 import com.ecrc.cituofflinemap.models.BuildingPoint;
 import com.ecrc.cituofflinemap.models.IntersectionPoint;
-import com.ecrc.cituofflinemap.models.Path;
 import com.ecrc.cituofflinemap.models.PlacePoint;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.OnTouch;
 
 /**
  * Created by ian on 10/23/15.
@@ -55,18 +50,79 @@ public class CITMap extends SurfaceView implements SurfaceHolder.Callback{
         this.intersections = intersections;
     }
 
-    public Path getShortestPath(String from,String to){
-        PlacePoint pointFrom = getPlacePointByName(from);
-        PlacePoint pointTo = getPlacePointByName(to);
-        return getShortestPath(pointFrom,pointTo);
+    HashMap<PlacePoint,Double> distance ;
+    List<PlacePoint> settled;
+    List<PlacePoint> unsettled;
+    HashMap<PlacePoint, PlacePoint> predecessors;
+    public void dijkstraAlgorithm(PlacePoint source){
+        distance = initalizeDistance();
+        settled = new ArrayList<>();
+        unsettled = new ArrayList<>();
+        predecessors = new HashMap<>();
+        unsettled.add(source);
+        distance.put(source, Double.valueOf(0.0f));
+        while(!unsettled.isEmpty()){
+            PlacePoint evaluationPoint = getPointWithLowestDistance(unsettled);
+            unsettled.remove(evaluationPoint);
+            settled.add(evaluationPoint);
+            evaluateNeighbors(evaluationPoint);
+        }
+
     }
-    public Path getShortestPath(PlacePoint from,PlacePoint to){
-        Path start =  new Path(0);
-        start.getPlaces().add(from);
-        Path p = from.findPathTo(to,start);
-        if(p.reached(to))
-            return p;
-        else return null;
+
+    private void evaluateNeighbors(PlacePoint evaluationPoint) {
+        for(PlacePoint destination: evaluationPoint.getConnections()){
+            if(!settled.contains(destination)){
+                double edgeDistance = PlacePoint.getDistance(evaluationPoint,destination);
+                double newDistance = distance.get(evaluationPoint) + edgeDistance;
+                if(distance.get(destination) > newDistance){
+                    distance.put(destination,newDistance);
+                    predecessors.put(destination, evaluationPoint);
+                    unsettled.add(destination);
+                }
+            }
+        }
+    }
+
+    public LinkedList<PlacePoint> getPath(PlacePoint target) {
+        LinkedList<PlacePoint> path = new LinkedList<>();
+        PlacePoint step = target;
+        // check if a path exists
+        if (predecessors.get(step) == null) {
+            return null;
+        }
+        path.add(step);
+        while (predecessors.get(step) != null) {
+            step = predecessors.get(step);
+            path.add(step);
+        }
+        // Put it into the correct order
+        Collections.reverse(path);
+        return path;
+    }
+
+    private PlacePoint getPointWithLowestDistance(List<PlacePoint> unsettled) {
+        PlacePoint current = unsettled.get(0);
+        for (PlacePoint p :
+                unsettled) {
+            if(distance.get(current)>distance.get(p))
+                current = p;
+        }
+        return current;
+    }
+
+    double max_distance = 100000;
+    private HashMap<PlacePoint, Double> initalizeDistance() {
+        HashMap<PlacePoint, Double> map = new HashMap<>();
+        for (PlacePoint p :
+                this.buildings) {
+            map.put(p,max_distance);
+        }
+        for (PlacePoint p :
+                this.intersections) {
+            map.put(p,max_distance);
+        }
+        return map;
     }
 
     public void setConnections(String[] connectionArray){
@@ -75,7 +131,7 @@ public class CITMap extends SurfaceView implements SurfaceHolder.Callback{
             if(places.length<2)
                 continue;;
             addConnection(places[0],places[1]);
-            addConnection(places[1],places[0]);
+            addConnection(places[1], places[0]);
         }
     }
 
@@ -84,9 +140,9 @@ public class CITMap extends SurfaceView implements SurfaceHolder.Callback{
         PlacePoint point2 = getPlacePointByName(pointName2);
         if(point1!=null && point2!=null) {
             if(point1 instanceof BuildingPoint)
-                ((BuildingPoint) point1).addConnection(point2);
+                point1.addConnection(point2);
             if(point1 instanceof IntersectionPoint)
-                ((IntersectionPoint) point1).addConnection(point2);
+                point1.addConnection(point2);
         }
     }
 
@@ -125,5 +181,13 @@ public class CITMap extends SurfaceView implements SurfaceHolder.Callback{
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
 
+    }
+    PlacePoint recentSearch;
+    public LinkedList<PlacePoint> getShortestPath(PlacePoint source, PlacePoint destination) {
+        if(recentSearch == null || recentSearch!=source) {
+            this.dijkstraAlgorithm(source);
+            recentSearch = source;
+        }
+        return this.getPath(destination);
     }
 }
