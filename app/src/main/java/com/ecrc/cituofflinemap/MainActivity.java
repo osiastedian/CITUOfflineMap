@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.ecrc.cituofflinemap.CustomViews.CITMap;
 import com.ecrc.cituofflinemap.models.BuildingPoint;
@@ -37,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
             loadIntersections();
             loadConnections();
             drawPaths();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void drawPaths() {
     }
+
+
 
     private void loadIntersections() throws Exception {
         List<IntersectionPoint> array =  new ArrayList<>();
@@ -75,19 +77,13 @@ public class MainActivity extends AppCompatActivity {
         if(spinnerFrom.getSelectedItem()!=null & spinnerTo.getSelectedItem()!=null ) {
             PlacePoint selectedFrom = (PlacePoint) spinnerFrom.getSelectedItem();
             PlacePoint selectedTo = (PlacePoint) spinnerTo.getSelectedItem();
+            map.drawPoints();
             LinkedList<PlacePoint> shortestPath = map.getShortestPath(selectedFrom, selectedTo);
+            if(shortestPath!=null) {
+                map.drawPath(shortestPath);
+            }
             // Draw edges from placepoint to placepoint based on shortestPath
         }
-    }
-    private void drawLine(Point p1,Point p2){
-        Canvas canvas =map.getHolder().lockCanvas();
-        canvas.drawColor(Color.BLACK);
-        Paint p = new Paint();
-        p.setColor(Color.WHITE);
-        canvas.drawLine(p1.x, p1.y, p2.x, p2.y, p);
-        //canvas.drawColor(Color.RED);
-        map.getHolder().unlockCanvasAndPost(canvas);
-
     }
 
     private PlacePoint[] getPoints(int id, Class convert) throws Exception {

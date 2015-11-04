@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="intersections" id="intersections">
-        <item>Test_1
-            <attr name="X">150</attr>
-            <attr name="Y">150</attr>
+        <item>Inter_1
+            <attr name="X">718</attr>
+            <attr name="Y">885</attr>
             <attr name="picutre">"FileName1"</attr>
         </item>
-        <item>Test_2
-            <attr name="X">550</attr>
-            <attr name="Y">550</attr>
+        <item>Inter_2
+            <attr name="X">679</attr>
+            <attr name="Y">706</attr>
             <attr name="picutre">"FileName3"</attr>
         </item>
-        <item>Test_3
-            <attr name="X">1000</attr>
-            <attr name="Y">1000</attr>
+        <item>Inter_3
+            <attr name="X">652</attr>
+            <attr name="Y">533</attr>
             <attr name="picutre">"FileName2"</attr>
         </item>
     </array>

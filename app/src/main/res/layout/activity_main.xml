@@ -12,7 +12,7 @@
         android:layout_height="wrap_content">
             <com.ecrc.cituofflinemap.CustomViews.CITMap
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="424dp"
                 android:id="@+id/map" />
     </LinearLayout>
     <LinearLayout

@@ -2,11 +2,18 @@ package com.ecrc.cituofflinemap.CustomViews;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 
+import com.ecrc.cituofflinemap.R;
 import com.ecrc.cituofflinemap.models.BuildingPoint;
 import com.ecrc.cituofflinemap.models.IntersectionPoint;
 import com.ecrc.cituofflinemap.models.PlacePoint;
@@ -18,6 +25,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import butterknife.ButterKnife;
+import butterknife.OnTouch;
 
 /**
  * Created by ian on 10/23/15.
@@ -27,6 +35,11 @@ public class CITMap extends SurfaceView implements SurfaceHolder.Callback{
     private List<IntersectionPoint> intersections;
     private Paint placePaint;
     private Bitmap backgroundImage;
+
+    public void setBackgroundImage(Bitmap source) {
+        if(source!=null)
+            backgroundImage = Bitmap.createScaledBitmap(source, this.getMeasuredWidth(), this.getMeasuredHeight(), true);
+    }
 
     public CITMap(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -60,7 +73,7 @@ public class CITMap extends SurfaceView implements SurfaceHolder.Callback{
         unsettled = new ArrayList<>();
         predecessors = new HashMap<>();
         unsettled.add(source);
-        distance.put(source, Double.valueOf(0.0f));
+        distance.put(source, (double) 0.0f);
         while(!unsettled.isEmpty()){
             PlacePoint evaluationPoint = getPointWithLowestDistance(unsettled);
             unsettled.remove(evaluationPoint);
@@ -120,7 +133,7 @@ public class CITMap extends SurfaceView implements SurfaceHolder.Callback{
         }
         for (PlacePoint p :
                 this.intersections) {
-            map.put(p,max_distance);
+            map.put(p, max_distance);
         }
         return map;
     }
@@ -129,7 +142,7 @@ public class CITMap extends SurfaceView implements SurfaceHolder.Callback{
         for(String connection : connectionArray) {
             String []places = connection.split(" ");
             if(places.length<2)
-                continue;;
+                continue;
             addConnection(places[0],places[1]);
             addConnection(places[1], places[0]);
         }
@@ -189,5 +202,53 @@ public class CITMap extends SurfaceView implements SurfaceHolder.Callback{
             recentSearch = source;
         }
         return this.getPath(destination);
+    }
+    int count = 0;
+    @OnTouch(R.id.map)
+    public boolean touchPoint(View view,MotionEvent event){
+        SurfaceHolder holder = this.getHolder();
+        Paint placePaint = new Paint();
+        placePaint.setTextSize(30);
+        placePaint.setColor(Color.WHITE);
+        drawPoints();
+        Canvas canvas  = holder.lockCanvas();
+        canvas.drawText("X:" + (int) event.getX() + "\nY:" + (int) event.getY(), 0, 30, placePaint);
+        count++;
+        holder.unlockCanvasAndPost(canvas);
+        return true;
+    }
+
+    public void drawPoints(){
+        if(backgroundImage==null){
+            Bitmap source = BitmapFactory.decodeResource(this.getResources(), R.drawable.backgroundmap);
+            backgroundImage = Bitmap.createScaledBitmap(source, this.getMeasuredWidth(), this.getMeasuredHeight(), true);
+        }
+
+        SurfaceHolder holder = this.getHolder();
+        Paint buildingPaint = new Paint();
+        buildingPaint.setColor(Color.WHITE);
+        Paint intersectionPaint = new Paint();
+        intersectionPaint.setColor(Color.RED);
+        Canvas canvas  = holder.lockCanvas();
+        canvas.drawBitmap(backgroundImage, 0, 0, buildingPaint);
+        for(PlacePoint building : this.buildings){
+            canvas.drawCircle(building.getX(),building.getY(),10,buildingPaint);
+        }
+        for(PlacePoint intersect : this.intersections){
+            canvas.drawCircle(intersect.getX(),intersect.getY(),10,intersectionPaint);
+        }
+        holder.unlockCanvasAndPost(canvas);
+    }
+    public void drawPath(LinkedList<PlacePoint> shortestPath) {
+        Canvas canvas =this.getHolder().lockCanvas();
+        Paint p = new Paint();
+        p.setStrokeWidth(10);
+        p.setColor(Color.BLUE);
+        for (int i = 1; i < shortestPath.size(); i++) {
+            Point source = new Point(shortestPath.get(i - 1).getX(), shortestPath.get(i - 1).getY());
+            Point destination = new Point(shortestPath.get(i).getX(), shortestPath.get(i).getY());
+            canvas.drawLine(source.x, source.y, destination.x, destination.y, p);
+        }
+        this.getHolder().unlockCanvasAndPost(canvas);
     }
 }
