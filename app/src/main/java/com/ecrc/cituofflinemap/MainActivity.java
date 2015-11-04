@@ -1,11 +1,7 @@
 package com.ecrc.cituofflinemap;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Point;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -35,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
             loadBuildings();
             loadIntersections();
             loadConnections();
-            drawPaths();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -47,11 +42,6 @@ public class MainActivity extends AppCompatActivity {
         map.setConnections(temp);
 
     }
-
-    private void drawPaths() {
-    }
-
-
 
     private void loadIntersections() throws Exception {
         List<IntersectionPoint> array =  new ArrayList<>();
@@ -77,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         if(spinnerFrom.getSelectedItem()!=null & spinnerTo.getSelectedItem()!=null ) {
             PlacePoint selectedFrom = (PlacePoint) spinnerFrom.getSelectedItem();
             PlacePoint selectedTo = (PlacePoint) spinnerTo.getSelectedItem();
-            map.drawPoints();
+
             LinkedList<PlacePoint> shortestPath = map.getShortestPath(selectedFrom, selectedTo);
             if(shortestPath!=null) {
                 map.drawPath(shortestPath);
