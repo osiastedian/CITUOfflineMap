@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="places" id="placePoints">
+        <!--
+            Rule/s:
+               1.) Replace all spaces to underscores(" " -> "_")
+                    ex."Main Building" ->  Main_Building
+        -->
         <item>College_Of_Computer_Studies
             <attr name="X">730</attr>
             <attr name="Y">1005</attr>
@@ -18,6 +23,20 @@
         <item>College_Canteen
             <attr name="X">612</attr>
             <attr name="Y">466</attr>
+            <attr name="picutre">"FileName2"</attr>
+            <attr name="color">blue</attr>
+            <attr name="size">MEDIUM</attr>
+        </item>
+        <item>Gymnasium
+            <attr name="X">295</attr>
+            <attr name="Y">445</attr>
+            <attr name="picutre">"FileName2"</attr>
+            <attr name="color">blue</attr>
+            <attr name="size">MEDIUM</attr>
+        </item>
+        <item>PE_Rooms
+            <attr name="X">341</attr>
+            <attr name="Y">695</attr>
             <attr name="picutre">"FileName2"</attr>
             <attr name="color">blue</attr>
             <attr name="size">MEDIUM</attr>

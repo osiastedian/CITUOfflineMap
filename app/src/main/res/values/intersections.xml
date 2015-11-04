@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="intersections" id="intersections">
+        <!--
+            Rule/s:
+               1.) Replace all spaces to underscores(" " -> "_")
+                    ex."Intersection 1" ->  "Intersection_1"
+        -->
         <item>Inter_1
             <attr name="X">718</attr>
             <attr name="Y">885</attr>
@@ -14,6 +19,11 @@
         <item>Inter_3
             <attr name="X">652</attr>
             <attr name="Y">533</attr>
+            <attr name="picutre">"FileName2"</attr>
+        </item>
+        <item>Inter_4
+            <attr name="X">406</attr>
+            <attr name="Y">1029</attr>
             <attr name="picutre">"FileName2"</attr>
         </item>
     </array>

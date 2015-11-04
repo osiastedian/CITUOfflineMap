@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="connections" id="connections">
+        <!--
+            Rule/s:
+               1.) Put space between points(Main_Building and Inter_1)
+                    ex.   "Inter_1 Main_Building"
+               2.) ALWAYS use the names you entered on the other XMLs(places & intersections)
+                    ex.    NO:   Main Building
+                          YES:   Main_Building
+        -->
+
+
+        <!-- Intersection Connections-->
         <!-- Inter_1 Connections -->
             <!-- Buildings-->
                 <item>Inter_1 College_Of_Computer_Studies</item>
@@ -12,13 +23,21 @@
             <!-- Buildings-->
 
             <!-- Intersections -->
-            <item>Inter_2 Inter_3</item>
+                <item>Inter_2 Inter_3</item>
 
         <!-- Inter_3 Connections-->
             <!-- Buildings-->
                 <item>Inter_3 College_Canteen</item>
             <!-- Intersections -->
+        <!-- Inter_4 Connections-->
+            <!-- Buildings-->
+                <item>Inter_4 PE_Rooms</item>
+                <item>Inter_4 College_Of_Computer_Studies</item>
+            <!-- Intersections -->
 
+        <!-- Building to Building Connections-->
+        <item>College_Canteen Gymnasium</item>
+        <item>PE_Rooms Gymnasium</item>
 
     </array>
 </resources>
