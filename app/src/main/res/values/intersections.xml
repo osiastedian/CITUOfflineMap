@@ -7,23 +7,34 @@
                     ex."Intersection 1" ->  "Intersection_1"
         -->
         <item>Inter_1
-            <attr name="X">718</attr>
-            <attr name="Y">885</attr>
+            <attr name="X">708</attr>
+            <attr name="Y">999</attr>
             <attr name="picutre">"FileName1"</attr>
         </item>
         <item>Inter_2
-            <attr name="X">679</attr>
-            <attr name="Y">706</attr>
+            <attr name="X">689</attr>
+            <attr name="Y">868</attr>
             <attr name="picutre">"FileName3"</attr>
         </item>
         <item>Inter_3
-            <attr name="X">652</attr>
-            <attr name="Y">533</attr>
+            <attr name="X">657</attr>
+            <attr name="Y">642</attr>
             <attr name="picutre">"FileName2"</attr>
         </item>
         <item>Inter_4
-            <attr name="X">406</attr>
-            <attr name="Y">1029</attr>
+            <attr name="X">383</attr>
+            <attr name="Y">1169</attr>
+            <attr name="picutre">"FileName2"</attr>
+        </item>
+
+        <item>Inter_5
+            <attr name="X">746</attr>
+            <attr name="Y">1117</attr>
+            <attr name="picutre">"FileName2"</attr>
+        </item>
+        <item>Inter_6
+            <attr name="X">491</attr>
+            <attr name="Y">454</attr>
             <attr name="picutre">"FileName2"</attr>
         </item>
     </array>

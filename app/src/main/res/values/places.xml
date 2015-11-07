@@ -7,36 +7,64 @@
                     ex."Main Building" ->  Main_Building
         -->
         <item>College_Of_Computer_Studies
-            <attr name="X">730</attr>
-            <attr name="Y">1005</attr>
+            <attr name="X">716</attr>
+            <attr name="Y">1136</attr>
             <attr name="picutre">FileName1</attr>
             <attr name="color">red</attr>
             <attr name="size">MEDIUM</attr>
         </item>
         <item>Main_Building
-            <attr name="X">682</attr>
-            <attr name="Y">884</attr>
+            <attr name="X">679</attr>
+            <attr name="Y">1005</attr>
             <attr name="picutre">FileName3</attr>
             <attr name="color">"red"</attr>
             <attr name="size">BIG</attr>
         </item>
         <item>College_Canteen
-            <attr name="X">612</attr>
-            <attr name="Y">466</attr>
+            <attr name="X">625</attr>
+            <attr name="Y">561</attr>
             <attr name="picutre">"FileName2"</attr>
             <attr name="color">blue</attr>
             <attr name="size">MEDIUM</attr>
         </item>
         <item>Gymnasium
-            <attr name="X">295</attr>
-            <attr name="Y">445</attr>
+            <attr name="X">289</attr>
+            <attr name="Y">485</attr>
             <attr name="picutre">"FileName2"</attr>
             <attr name="color">blue</attr>
             <attr name="size">MEDIUM</attr>
         </item>
         <item>PE_Rooms
-            <attr name="X">341</attr>
-            <attr name="Y">695</attr>
+            <attr name="X">278</attr>
+            <attr name="Y">650</attr>
+            <attr name="picutre">"FileName2"</attr>
+            <attr name="color">blue</attr>
+            <attr name="size">MEDIUM</attr>
+        </item>
+        <item>Front_Gate
+            <attr name="X">773</attr>
+            <attr name="Y">1227</attr>
+            <attr name="picutre">"FileName2"</attr>
+            <attr name="color">blue</attr>
+            <attr name="size">MEDIUM</attr>
+        </item>
+        <item>Back_Gate
+            <attr name="X">533</attr>
+            <attr name="Y">172</attr>
+            <attr name="picutre">"FileName2"</attr>
+            <attr name="color">blue</attr>
+            <attr name="size">MEDIUM</attr>
+        </item>
+        <item>College_of_Engineering_and_Architecture
+            <attr name="X">697</attr>
+            <attr name="Y">677</attr>
+            <attr name="picutre">"FileName2"</attr>
+            <attr name="color">blue</attr>
+            <attr name="size">MEDIUM</attr>
+        </item>
+        <item>College_Library
+            <attr name="X">649</attr>
+            <attr name="Y">860</attr>
             <attr name="picutre">"FileName2"</attr>
             <attr name="color">blue</attr>
             <attr name="size">MEDIUM</attr>

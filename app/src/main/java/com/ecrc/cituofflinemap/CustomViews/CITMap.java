@@ -234,12 +234,10 @@ public class CITMap extends SurfaceView implements  SurfaceHolder.Callback{
             backgroundImage = Bitmap.createScaledBitmap(source, this.getMeasuredWidth(), this.getMeasuredHeight(), true);
         }
         canvas.drawBitmap(backgroundImage, 0, 0, buildingPaint);
-        for(PlacePoint building : this.buildings){
-            canvas.drawCircle(building.getX(),building.getY(),this.buildingPointSize,buildingPaint);
-        }
-        for(PlacePoint intersect : this.intersections){
-            canvas.drawCircle(intersect.getX(),intersect.getY(),this.intersectionPointSize,intersectionPaint);
-        }
+        // Comment line below if you want to hide building points
+        for(PlacePoint building : this.buildings){canvas.drawCircle(building.getX(),building.getY(),this.buildingPointSize,buildingPaint);}
+        // Comment line below if you want to hide intersection points
+        for(PlacePoint intersect : this.intersections){canvas.drawCircle(intersect.getX(),intersect.getY(),this.intersectionPointSize,intersectionPaint);}
 
     }
     public void drawPath(LinkedList<PlacePoint> shortestPath) {

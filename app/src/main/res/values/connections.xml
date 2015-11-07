@@ -14,29 +14,41 @@
         <!-- Intersection Connections-->
         <!-- Inter_1 Connections -->
             <!-- Buildings-->
-                <item>Inter_1 College_Of_Computer_Studies</item>
                 <item>Inter_1 Main_Building</item>
             <!-- Intersections -->
                 <item>Inter_1 Inter_2</item>
+                <item>Inter_1 Inter_5</item>
 
         <!-- Inter_2 Connections-->
             <!-- Buildings-->
-
+                <item>Inter_2 College_of_Engineering_and_Architecture</item>
+                <item>Inter_2 College_Library</item>
             <!-- Intersections -->
                 <item>Inter_2 Inter_3</item>
 
         <!-- Inter_3 Connections-->
             <!-- Buildings-->
                 <item>Inter_3 College_Canteen</item>
+                <item>Inter_3 College_of_Engineering_and_Architecture</item>
             <!-- Intersections -->
         <!-- Inter_4 Connections-->
             <!-- Buildings-->
                 <item>Inter_4 PE_Rooms</item>
                 <item>Inter_4 College_Of_Computer_Studies</item>
             <!-- Intersections -->
+        <!-- Inter_5 Connections-->
+            <!-- Buildings-->
+                <item>Inter_5 College_Of_Computer_Studies</item>
+                <item>Inter_5 Front_Gate</item>
+            <!-- Intersections -->
+        <!-- Inter_6 Connections-->
+            <!-- Buildings-->
+            <item>Inter_6 College_Canteen</item>
+            <item>Inter_6 Back_Gate</item>
+            <item>Inter_6 Gymnasium</item>
+            <!-- Intersections -->
 
         <!-- Building to Building Connections-->
-        <item>College_Canteen Gymnasium</item>
         <item>PE_Rooms Gymnasium</item>
 
     </array>
