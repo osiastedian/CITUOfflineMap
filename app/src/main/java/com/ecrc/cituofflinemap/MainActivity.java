@@ -1,15 +1,23 @@
 package com.ecrc.cituofflinemap;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.SurfaceView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
 import com.ecrc.cituofflinemap.CustomViews.CITMap;
 import com.ecrc.cituofflinemap.models.BuildingPoint;
 import com.ecrc.cituofflinemap.models.IntersectionPoint;
 import com.ecrc.cituofflinemap.models.PlacePoint;
+
+import org.xml.sax.ContentHandler;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -22,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.fromSpinner)Spinner spinnerFrom;
     @Bind(R.id.toSpinner)Spinner spinnerTo;
     @Bind(R.id.map)CITMap map;
+    @Bind(R.id.controlLayout)LinearLayout controlLayout;
+    @Bind(R.id.findPathButton)Button findPathButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +45,25 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        findPathButton.post(new Runnable() {
+            @Override
+            public void run() {
+                int width = controlLayout.getWidth();
+                int spinnerWidth= (int)(width * .40);
+                Spinner.LayoutParams param = spinnerFrom.getLayoutParams();
+                param.width = spinnerWidth;
+                spinnerFrom.setLayoutParams(param);
+                spinnerTo.setLayoutParams(param);
+                findPathButton.getLayoutParams().width = width - 2*spinnerWidth;
+                ViewGroup.LayoutParams surface = map.getLayoutParams();
+
+            }
+        });
+
     }
+
+
 
     private void loadConnections() {
         String[] temp = this.getResources().getStringArray(R.array.connections);
@@ -63,7 +91,10 @@ public class MainActivity extends AppCompatActivity {
         map.setBuildings(array);
     }
 
+
+
     public void findPathButton_Clicked(View view){
+        // SET LAYOUT
         if(spinnerFrom.getSelectedItem()!=null & spinnerTo.getSelectedItem()!=null ) {
             PlacePoint selectedFrom = (PlacePoint) spinnerFrom.getSelectedItem();
             PlacePoint selectedTo = (PlacePoint) spinnerTo.getSelectedItem();
@@ -72,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
             if(shortestPath!=null) {
                 map.drawPath(shortestPath);
             }
-            // Draw edges from placepoint to placepoint based on shortestPath
         }
     }
 

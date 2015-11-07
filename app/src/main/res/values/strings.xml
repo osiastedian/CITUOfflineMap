@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CITU Offline Map</string>
+    <string name="buttonFindPath">Find Path!</string>
 </resources>
