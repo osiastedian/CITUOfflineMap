@@ -69,6 +69,13 @@
             <attr name="color">blue</attr>
             <attr name="size">MEDIUM</attr>
         </item>
+        <item>Chemistry_Department
+            <attr name="X">353</attr>
+            <attr name="Y">1048</attr>
+            <attr name="picutre">"FileName2"</attr>
+            <attr name="color">blue</attr>
+            <attr name="size">MEDIUM</attr>
+        </item>
     </array>
 
 </resources>

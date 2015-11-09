@@ -33,8 +33,8 @@
             <!-- Intersections -->
         <!-- Inter_4 Connections-->
             <!-- Buildings-->
-                <item>Inter_4 PE_Rooms</item>
                 <item>Inter_4 College_Of_Computer_Studies</item>
+                <item>Inter_4 Chemistry_Department</item>
             <!-- Intersections -->
         <!-- Inter_5 Connections-->
             <!-- Buildings-->
@@ -50,6 +50,7 @@
 
         <!-- Building to Building Connections-->
         <item>PE_Rooms Gymnasium</item>
+        <item>Chemistry_Department PE_Rooms</item>
 
     </array>
 </resources>

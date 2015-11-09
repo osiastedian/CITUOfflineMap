@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">CITU Offline Map</string>
     <string name="buttonFindPath">Find Path!</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="recentsString">Recents</string>
+    <integer name="recentsCapacity">10</integer>
+    <string name="recentsFileName">recents.txt</string>
+    <string name="gotoMapString">GO TO MAP</string>
 </resources>
